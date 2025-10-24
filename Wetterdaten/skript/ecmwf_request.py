@@ -1,9 +1,12 @@
 
 from ecmwfapi import ECMWFDataServer
+
+# select server
 server = ECMWFDataServer()
 
 
 def retrieve_tigge_data():
+    # select the dates
     dates = [
         "2019-01-01", "2019-01-07", "2019-01-13", "2019-01-19", "2019-01-25", "2019-01-31",
         "2019-02-06", "2019-02-12", "2019-02-18", "2019-02-24",
@@ -21,8 +24,10 @@ def retrieve_tigge_data():
         "2019-11-03", "2019-11-09", "2019-11-15", "2019-11-21", "2019-11-27",
         "2019-12-03", "2019-12-09", "2019-12-15", "2019-12-21", "2019-12-27"
         ]
-
+    # select the times
     times = ['00']
+
+    # single request for every date/time
     for date in dates_2:
          for time in times:
              target = '/Users/mick/Documents/GitHub/masterthesis-mick/Wetterdaten/ECWMF_Data/ecmwf_sfc_%s.grb' % (date)
@@ -35,6 +40,7 @@ def tigge_pf_sfc_request(date, time, target):
        Please note that a subset of the available data is requested below.
        Change the keywords below to adapt it to your needs. (ie to add more parameters, or numbers etc)
     '''
+    # selected parameters
     server.retrieve({
         "class": "ti",
         "dataset": "tigge",
@@ -53,5 +59,6 @@ def tigge_pf_sfc_request(date, time, target):
     })
  
 if __name__ == '__main__':
+    # run the script automatically
     retrieve_tigge_data()
 
